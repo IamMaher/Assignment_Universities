@@ -38,18 +38,6 @@ This project demonstrates a scalable Android modular architecture with three key
 *   **Universities List Feature Module:** Displays a list of universities.
 *   **University Details Feature Module:** Presents detailed information about a single university.
 
-### Project Structure
-project-root
-├── core
-│   ├── build.gradle.kts
-│   └── src/main/java/com/example/core
-├── feature-universities-list
-│   ├── build.gradle.kts
-│   └── src/main/java/com/example/universitieslist
-├── feature-university-details
-│   ├── build.gradle.kts
-│   └── src/main/java/com/example/universitydetails
-└── app (Your main application module)
 
 ### Clean Architecture
 
