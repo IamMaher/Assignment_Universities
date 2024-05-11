@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.ksp)
+
 }
 
 android {
@@ -62,11 +63,11 @@ dependencies {
 
     testApi(libs.bundles.test.common)
 
-
+    implementation(projects.core.ui)
+    implementation(projects.core.network)
+    implementation(projects.core.di)
     implementation(projects.core.navigation)
-    api(projects.core.ui)
-    api(projects.core.network)
-    api(projects.core.di)
     implementation(projects.core.domain)
     implementation(projects.feature.list)
+    implementation(projects.feature.details)
 }

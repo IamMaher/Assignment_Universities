@@ -2,6 +2,8 @@ package com.example.di.modules
 
 import android.content.Context
 import com.example.network.Constant
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import okhttp3.Cache
@@ -21,21 +23,19 @@ class NetworkModule {
         return Cache(context.cacheDir, cacheSize)
     }
 
-    @Provides
-    @Singleton
-    fun provideGson(): MoshiConverterFactory = MoshiConverterFactory.create()
 
     @Provides
     @Singleton
-    fun provideOkHttpClient(cache: Cache) = OkHttpClient.Builder().addNetworkInterceptor(
-        HttpLoggingInterceptor().apply {
-            level = HttpLoggingInterceptor.Level.BODY
-        }
-    ).cache(cache).build()
+    fun provideMoshi(): Moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
 
     @Provides
     @Singleton
-    fun provideRetrofit(
-        okHttpClient: OkHttpClient, moshiConverterFactory: MoshiConverterFactory
-    ): Retrofit = Retrofit.Builder().addConverterFactory(moshiConverterFactory).client(okHttpClient).baseUrl(Constant.BASE_URL).build()
+    fun provideOkHttpClient(cache: Cache) = OkHttpClient.Builder().addNetworkInterceptor(HttpLoggingInterceptor().apply {
+        level = HttpLoggingInterceptor.Level.BODY
+    }).cache(cache).build()
+
+    @Provides
+    @Singleton
+    fun provideRetrofit(okHttpClient: OkHttpClient, moshi: Moshi
+    ): Retrofit = Retrofit.Builder().addConverterFactory(MoshiConverterFactory.create(moshi)).client(okHttpClient).baseUrl(Constant.BASE_URL).build()
 }

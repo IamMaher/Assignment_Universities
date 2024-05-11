@@ -15,6 +15,7 @@ dependencies {
     implementation(libs.gradle)
     implementation(libs.gradle.api)
     implementation(libs.ksp.plugin)
+    implementation(libs.safearg.plugin)
 }
 
 tasks.test {

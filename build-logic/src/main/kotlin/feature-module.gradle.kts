@@ -1,9 +1,11 @@
 plugins {
     id("core-module")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
     buildFeatures.compose = true
+    buildFeatures.viewBinding = true
 
     composeOptions {
         kotlinCompilerExtensionVersion = libs.versionStr("compose.compiler")
