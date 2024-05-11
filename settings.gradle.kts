@@ -29,4 +29,5 @@ include(":core:database")
 include(":core:util")
 
 include(":feature:list")
+include(":feature:details")
 

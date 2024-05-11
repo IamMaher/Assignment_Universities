@@ -4,16 +4,26 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.ListFragment
+import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavOptions
+import androidx.navigation.Navigator
+import androidx.navigation.fragment.FragmentNavigator
+import androidx.navigation.fragment.findNavController
 import com.example.di.DaggerCoreComponent
 import com.example.list.R
 import com.example.list.databinding.FragmentListBinding
 import com.example.list.di.DaggerListComponent
 import com.example.list.presentation.adapter.UniversitiesAdapter
 import com.example.list.presentation.viewmodel.ListViewModel
+import com.example.navigation.extension.NavigationKeys.DETAILS_SCREEN_KEY
+import com.example.navigation.extension.NavigationKeys.REFRESH_KEY
+import com.example.navigation.extension.navigateSafe
 import com.example.ui.App
 import com.example.ui.extension.observe
 import com.example.ui.extension.viewBinding
@@ -48,7 +58,8 @@ class ListFragment : Fragment(R.layout.fragment_list) {
 
     private fun initUI() {
         binding.rvUniversities.adapter = adapter
-        adapter.select = { item -> // TODO: navigate to details
+        adapter.select = { item ->
+           findNavController().navigate(R.id.detailsFragment, bundleOf("item" to item))
         }
     }
 
