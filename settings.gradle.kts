@@ -23,8 +23,10 @@ include(":app")
 include(":core:ui")
 include(":core:navigation")
 include(":core:domain")
-include(":core:coroutines")
 include(":core:di")
 include(":core:network")
 include(":core:database")
 include(":core:util")
+
+include(":feature:list")
+
