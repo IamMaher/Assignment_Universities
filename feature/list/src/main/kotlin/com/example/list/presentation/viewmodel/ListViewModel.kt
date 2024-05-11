@@ -12,15 +12,16 @@ import javax.inject.Inject
 
 
 class ListViewModel @Inject constructor(private val getUniversitiesUseCase: GetUniversitiesUseCase) : ViewModel() {
-    private val _uiState: MutableStateFlow<ListUIState> = MutableStateFlow(ListUIState.Loading)
+    private val _uiState: MutableStateFlow<ListUIState> = MutableStateFlow(ListUIState.Empty)
     val uiState: StateFlow<ListUIState> = _uiState.asStateFlow()
 
     init {
         getUniversities()
     }
 
-    private fun getUniversities() {
+    fun getUniversities() {
         viewModelScope.launch {
+            ListUIState.Loading.also { _uiState.value = it }
             getUniversitiesUseCase.execute().apply {
                 onSuccess { list -> ListUIState.Success(list).also { _uiState.value = it } }
                 onFailure { throwable -> ListUIState.Fail(throwable).also { _uiState.value = it } }

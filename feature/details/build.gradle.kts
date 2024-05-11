@@ -14,5 +14,6 @@ android {
     }
 }
 dependencies {
+    implementation(projects.core.navigation)
     implementation(libs.bundles.navigation)
 }
