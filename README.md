@@ -28,7 +28,30 @@ This project implements the MVVM (Model-View-ViewModel) architecture pattern alo
 
 The MVVM architecture separates the UI from the business logic by introducing a ViewModel layer. This allows for better testability and maintainability of the codebase.
 
-### Modular Clean Architecture
+### Modular Seperation 
+
+![Modular Diagram](https://github.com/IamMaher/Assignment_Universities/assets/15931456/6932c2c6-dbad-4eb7-9e0c-309aed8b137a)
+
+This project demonstrates a scalable Android modular architecture with three key modules:
+
+*   **Core Module:** Provides essential dependencies, utilities, and base classes.
+*   **Universities List Feature Module:** Displays a list of universities.
+*   **University Details Feature Module:** Presents detailed information about a single university.
+
+### Project Structure
+project-root
+├── core
+│   ├── build.gradle.kts
+│   └── src/main/java/com/example/core
+├── feature-universities-list
+│   ├── build.gradle.kts
+│   └── src/main/java/com/example/universitieslist
+├── feature-university-details
+│   ├── build.gradle.kts
+│   └── src/main/java/com/example/universitydetails
+└── app (Your main application module)
+
+### Clean Architecture
 
 ![Modular Clean Architecture Diagram](https://github.com/IamMaher/Assignment_Universities/assets/15931456/2751283f-2393-4ff5-94de-1f3931bc7518")
 
